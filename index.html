@@ -5,6 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
+    <style>
+        div#quiz-head{
+            border:#5AB029 3px solid;
+            padding:10px 40px 40px 40px;
+            background-color:pink;
+            width:50%;}
+    </style>
+    <style>
+        div#quiz{
+            border:#5AB029 3px solid;
+            padding:10px 40px 40px 40px;
+            background-color:#E5FCE3;
+            width:50%;}
+    </style>
+    <style>
+        div#results{
+            border:#5AB029 3px solid;
+            padding:10px 40px 40px 40px;
+            background-color:papayawhip;
+            width:50%;}
+    </style>
     <script src="index.js" defer></script>
 </head>
 <body>
@@ -14,13 +35,11 @@
         <button id="light-mode">Light Mode</button>
     </div>
     <div id="quiz">
-        <h2>Frågor</h2>
-        <button id="next-question">Start quiz</button>
-        <button id="results">Se Resultat</button>
+        <h2 id="question-number"></h2>
+        <h4 id="questions"></h4>
     </div>
-    <div id="quiz-results">
-        <h2>Resultat:</h2>
-        <h4>Här kommer resultatet</h4>
+    <div id="results">
+        <h2 id="quiz-result"></h2>
     </div>
 </body>
 </html>
