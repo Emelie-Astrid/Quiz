@@ -1,17 +1,16 @@
-console.log("hej");
+//DIVAR - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+let test = document.querySelector("#quiz");
+let radio = document.querySelector("#radio");
+let submit = document.querySelector("#submit");
 
-//DIVERSE - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-let svar;
-let currentQuestion;
+//TEXT - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+let questionsAndPoints = document.querySelector("#question-number");
+let questionText = document.querySelector("#questions");
+let resultsText = document.querySelector("#quiz-result");
 
 //KNAPPAR - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 let darkBtn = document.querySelector("#dark-mode");
 let lightBtn = document.querySelector("#light-mode");
-
-//HEADINGS OCH TEXT - - - - - - - - - - - - - - - - - - - - - - - - -
-let questionsAndPoints = document.querySelector("#question-number");
-let questionText = document.querySelector("#questions");
-let resultsText = document.querySelector("#quiz-result");
 
 //FRÅGOR OCH POÄNG - - - - - - - - - - - - - - - - - - - - - - - - -
 let questionNum = 0;
@@ -101,12 +100,15 @@ let myQuestions = [
 
 //FUNKTION DARK MODE LIGHT MODE - - - - - - - - - - - - - - - - - - -
 
+
+
+
 //FUNKTION VISA FRÅGOR - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-function showQuestions (){
-    let test = document.querySelector("#quiz");
-
+function showQuestions (){    
     //Kollar antalet frågor mot array och skriver resultat
+    
+    resultsText.innerHTML = "Good Luck!";
+
     if (questionNum >= myQuestions.length) {
         test.innerHTML = "<h2>Du fick " + points + " av " + myQuestions.length + " rätt!</h2>";
         resultsText.innerHTML = "Quiz klart!"
@@ -117,24 +119,28 @@ function showQuestions (){
     }
 
     //Skriver ut fråga xx av xx i en h2
-    questionsAndPoints.innerHTML = "Fråga " + (questionNum+1) + " av " + myQuestions.length;
-
+    questionsAndPoints.innerText = "Fråga " + (questionNum+1) + " av " + myQuestions.length;
+    // console.log(questionsAndPoints);
+    // console.log(document.querySelector("#question-number"));
     //Deklarerar frågor och svarsalternativ
     currentQuestion = myQuestions[questionNum].question;
+    // console.log(currentQuestion);
     ansA = myQuestions[questionNum].a;
     ansB = myQuestions[questionNum].b;
     
     //Skriver ut frågan
-    questionText.innerHTML = currentQuestion;
-
+    questionText.innerText = currentQuestion;
+    // console.log(questionText);
     //Skriver ut svarsalternativ i radio-div
-    test.innerHTML += '<label> <input type="radio" name="svarsAlt" value="A"> ' + ansA + '</label><br>';
-    test.innerHTML += '<label> <input type="radio" name="svarsAlt" value="B"> ' + ansB + '</label><br><br>';
+    radio.innerHTML= "";
+    radio.innerHTML += '<label> <input type="radio" name="svarsAlt" value="A"> ' + ansA + '</label><br> <label> <input type="radio" name="svarsAlt" value="B"> ' + ansB + '</label><br><br>'
     
+
     //Resultatknapp
-    test.innerHTML += "<button onclick='checkAnswers()'>Submit Answer</button>";
+    submit.innerHTML = "";
+    submit.innerHTML += "<button id='submit-btn' onclick='checkAnswers()'>Submit Answer</button>";
+    
 }
-console.log(points);
 
 //FUNKTION TAR EMOT SVAR - - - - - - - - - - - - - - - - - - - - - - - - - 
 
