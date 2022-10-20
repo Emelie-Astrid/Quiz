@@ -7,6 +7,8 @@ let submit = document.querySelector("#submit");
 let questionsAndPoints = document.querySelector("#question-number");
 let questionText = document.querySelector("#questions");
 let resultsText = document.querySelector("#quiz-result");
+let wrongHead = document.querySelector("#wrong-head");
+let wrongUl = document.querySelector("#wrong-answers");
 
 //KNAPPAR - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 let darkBtn = document.querySelector("#dark-mode");
@@ -18,13 +20,13 @@ let points = 0;
 
 //ARRAY MED QUIZ - - - - - - - - - - - - - - - - - - - - - - - - - -
 let myQuestions = [
-    {
-        question: "Heter min katt Salsa?",
-        a: "Ja",
-        b: "Nej",
-        answer: "A",
-        type: "trueFalse",
-    },
+    // {
+    //     question: "Heter min katt Salsa?",
+    //     a: "Ja",
+    //     b: "Nej",
+    //     answer: "A",
+    //     type: "trueFalse",
+    // },
     // {
     //     question: "Heter jag Astrid i mellannamn?",
     //     a: "Ja",
@@ -39,27 +41,27 @@ let myQuestions = [
     //     answer: "B",
     //     type: "trueFalse"
     // },
-    // {
-    //     question: "Himlen är blå",
-    //     a: "Ja",
-    //     b: "Nej",
-    //     answer: "A",
-    //     type: "trueFalse"
-    // },
-    // {
-    //     question: "Jag är sjuksköterska",
-    //     a: "Ja",
-    //     b: "Nej",
-    //     answer: "B",
-    //     type: "trueFalse"
-    // },
-    // {
-    //     question: "Kaffe",
-    //     a: "Ja",
-    //     b: "Nej",
-    //     answer: "A",
-    //     type: "trueFalse"
-    // },
+    {
+        question: "Himlen är blå",
+        a: "Ja",
+        b: "Nej",
+        answer: "A",
+        type: "trueFalse"
+    },
+    {
+        question: "Jag är sjuksköterska",
+        a: "Ja",
+        b: "Nej",
+        answer: "B",
+        type: "trueFalse"
+    },
+    {
+        question: "Kaffe",
+        a: "Ja",
+        b: "Nej",
+        answer: "A",
+        type: "trueFalse"
+    },
     {
         question: "Hur gammal blev Astrid Lindgren?",
         a: 89,
@@ -69,45 +71,34 @@ let myQuestions = [
         answer: "C",
         type: "multipleChoice"
     },
-    {
-        question: "Vilken film är INTE från Studio Ghibli?",
-        a: "The Cat Returns",
-        b: "Your Name",
-        c: "The Wind Rises",
-        d: "Sprited Away",
-        answer: "B",
-        type: "multipleChoice"
-    },
-    {
-        question: "Vilka av dessa karaktärer en katt? OBS, 1-3 rätt svar",
-        a: "Pelle Svanslös",
-        b: "Cheshire cat",
-        c: "Pluto",
-        d: "Lufsen",
-        answer: "A",
-        type: "checkBox"
-    },
-    {
-        question: "Vilken film är INTE från Studio Ghibli?",
-        a: "The Cat Returns",
-        b: "Your Name",
-        c: "The Wind Rises",
-        d: "Sprited Away",
-        answer: "B",
-        //array
-        type: "checkBox"
-    },
+    // {
+    //     question: "Vilka av dessa karaktärer en katt? OBS, 1-3 rätt svar",
+    //     a: "Pelle",
+    //     b: "Cheshire",
+    //     c: "Pluto",
+    //     d: "Lufsen",
+    //     correctAnswers:["Pelle","Cheshire"], 
+    //     type: "checkBox"
+    // },
+    // {
+    //     question: "Vilken film är INTE från Studio Ghibli? OBS, 1-3 rätt svar",
+    //     a: "Askungen",
+    //     b: "YourName",
+    //     c: "The Wind Rises",
+    //     d: "Sprited Away",
+    //     correctAnswers:["Askungen","YourName"], 
+    //     type: "checkBox"
+    // },
 ];
+
+// ARRAY MED FELAKTIGA SVAR - - - - - - - - - - - - - - - - - -
+let wrongArray = [];
 
 //FUNKTION DARK MODE LIGHT MODE - - - - - - - - - - - - - - - - - - -
 
 
 //FUNKTION VISA FRÅGOR - - - - - - - - - - - - - - - - - - - - - - - - - -
 function showQuestions (){    
-
-    console.log("Frågetyp: " + myQuestions[questionNum].type);
-    console.log(myQuestions[questionNum].type === "checkBox");
-    console.log("Poäng: " + points);
 
     //Kollar antalet frågor mot array och skriver resultat
     if (questionNum >= myQuestions.length) {
@@ -126,7 +117,27 @@ function showQuestions (){
             test.style.color = "red";
         }
 
-        resultsText.innerHTML = "Quiz klart!"
+        resultsText.innerHTML = "Quiz klart!";
+        wrongHead.innerHTML = "Tyvärr svarade du fel på dessa frågor:"
+
+        // FORSÄTT JOBBA HÄR - - - - - - - - - - - - - - - - - - - - - - - -
+        // Varför blir alla svar gröna? Kolla igenom villkoren
+        
+
+        //Felaktiga frågor till en Ul
+        wrongArray.forEach((obj) => {
+            let wrongQuestion = document.createElement("li");
+            
+            if(obj.question.point === true){
+                wrongQuestion.style.color = "green";
+            }
+            else {
+                wrongQuestion.style.color = "red";
+            }
+            wrongQuestion.innerHTML = obj.question;
+            wrongUl.append(wrongQuestion);
+        })
+
         questionNum = 0;
         points = 0;
 
@@ -169,11 +180,11 @@ function showQuestions (){
 
     //Checkbox knappar
     radio.innerHTML= "";
-    radio.innerHTML += '<label> <input type="checkbox" name="svarsAltCheck" value="A"> ' + ansA + 
-    '</label><br> <label> <input type="checkbox" name="svarsAltCheck" value="B"> ' + ansB + 
-    '</label><br> <label> <input type="checkbox" name="svarsAltCheck" value="C"> ' + ansC + 
-    '</label><br> <label> <input type="checkbox" name="svarsAltCheck" value="D"> ' + ansD + 
-    '</label><br><br>'
+    radio.innerHTML += `<label> <input type="checkbox" name="svarsAltCheck" value=${myQuestions[questionNum].a}> ${ansA} 
+    </label><br> <label> <input type="checkbox" name="svarsAltCheck" value=${myQuestions[questionNum].b}> ${ansB} 
+    </label><br> <label> <input type="checkbox" name="svarsAltCheck" value=${myQuestions[questionNum].c}> ${ansC}
+    </label><br> <label> <input type="checkbox" name="svarsAltCheck" value=${myQuestions[questionNum].d}> ${ansD}
+    </label><br><br>`
     }
 
     //TRUEFALSE frågor - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -198,34 +209,34 @@ function showQuestions (){
 
 function checkAnswers () {
 
-    // FORTSÄTT JOBBA HÄR ! ! ! ! ! - - - - - - - - - - - - - - - - 
-
     //Hämta svar från checkboxar
     if (myQuestions[questionNum].type === "checkBox"){
-        //ifyllda checkboxar
+
         let allCheckedBoxes = document.querySelectorAll("input[type='checkbox']:checked");
         let checkBoxPoints = [];
 
-        allCheckedBoxes.forEach((box) => {
-            checkBoxPoints.push(box.value);
+        //Tar emot alla boxar som är checkade
+        allCheckedBoxes.forEach((obj) => {
+            checkBoxPoints.push(obj.value);
         });
-        console.log(checkBoxPoints);
 
-        let filteredPoints = myQuestions.filter((check) => {
-            return(
-            (checkBoxPoints.includes(check.a))
-            );
-        })
+        let filteredPoints = checkBoxPoints.filter((check) => {
+            return (myQuestions[questionNum].correctAnswers.includes(check)) 
+        });
+
+
+        if ((filteredPoints.length === myQuestions[questionNum].correctAnswers.length) && (checkBoxPoints.length ===myQuestions[questionNum].correctAnswers.length)) {
+            points++
+        }
+        else {
+            wrongArray.push(myQuestions[questionNum].question);
+        }
+        }
         
-        filteredPoints.forEach(check => {
-            points++;
-        });
-    }
-
     //Hämtar svar från radiobuttons
     else {
-    svarsAlt = document.getElementsByName("svarsAlt");
-    for (let i=0; i<svarsAlt.length; i++) {
+        svarsAlt = document.getElementsByName("svarsAlt");
+        for (let i=0; i<svarsAlt.length; i++) {
         if (svarsAlt[i].checked) {
             svar = svarsAlt[i].value;
         }
@@ -233,13 +244,32 @@ function checkAnswers () {
     //kollar om checked answer matchar korrekt val
     if(svar === myQuestions[questionNum].answer) {
         points++;
+        wrongArray.push({question:myQuestions[questionNum].question, point: true})
     }
+    else {
+        // wrongArray.push(myQuestions[questionNum].question);
+
+        wrongArray.push({
+            question: myQuestions[questionNum].question, 
+            point: false})
+
+    }
+    }
+
     questionNum++;
     showQuestions();
-    }
 }
 
+console.log(wrongArray);
+
+
 window.addEventListener("load", showQuestions);
+
+
+
+
+
+
 
 
 
@@ -250,3 +280,19 @@ window.addEventListener("load", showQuestions);
 // console.log(myQuestions[questionNum].type);
 //Om typen av fråga är "xxx"
 // console.log(myQuestions[questionNum].type === "multipleChoice");
+
+
+//Kollar om event ändrats på check-box
+// allCheckedBoxes.forEach((box) => {
+//     box.checked = false;
+//     box.addEventListener("change", () => filteredPoints());
+// });
+
+// //Kollar igen om checkboxar är icheckade och skriver in värdet i arr
+// function grabCheckBoxValues() {
+//     allCheckedBoxes.forEach((checkBox) => {
+//         if(checkBox.checked)
+//         checkBoxPoints.push(checkBox.value);
+//     });
+//     return checkBoxPoints;
+// }
