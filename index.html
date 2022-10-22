@@ -25,7 +25,7 @@
             padding:10px 40px 40px 40px;
             background-color:papayawhip;
             width:50%;}
-    </style>-->
+    </style> -->
     <script src="index.js" defer></script> 
 </head>
 <body>
@@ -37,13 +37,15 @@
     <div id="quiz">
         <h2 id="question-number"></h2>
         <h4 id="questions"></h4>
+        <button id="start-quiz">Starta quiz</button>
         <div id="radio"></div>
-        <div id="submit"></div>
+        <button id="next-question" hidden="hidden">Nästa fråga</button>
     </div>
     <div id="results">
-        <h2 id="quiz-result">Good Luck!</h2>
-        <h3 id="wrong-head">You can do it!</h3>
-        <ul id="wrong-answers"></ul>
+        <button id="show-results" hidden="hidden">Visa resultat</button>
+        <h2 id="quiz-result"></h2>
+        <ol id="answers"></ol>
+        <button id="restart-quiz" hidden="hidden">Börja om</button>
     </div>
 </body>
 </html>
