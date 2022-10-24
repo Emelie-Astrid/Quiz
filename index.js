@@ -1,4 +1,9 @@
-//DIVS AND TEXT - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+//STYLE  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+let body = document.querySelector("body");
+body.style.background = "white";
+body.style.color = "black";
+
+//OBJECTS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 let quiz = document.querySelector("#quiz");
 let radio = document.querySelector("#radio");
 let questionsAndPoints = document.querySelector("#question-number");
@@ -7,8 +12,7 @@ let resultsText = document.querySelector("#quiz-result");
 let answersUl = document.querySelector("#answers");
 
 //BUTTONS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-let darkBtn = document.querySelector("#dark-mode");
-let lightBtn = document.querySelector("#light-mode");
+let changeBtn = document.querySelector("#change-mode");
 let startBtn = document.querySelector("#start-quiz");
 let nextBtn = document.querySelector("#next-question");
 let resultBtn = document.querySelector("#show-results");
@@ -60,7 +64,18 @@ let myQuestions = [
 let answerArray = [];
 
 //FUNCTION DARK MODE LIGHT MODE - - - - - - - - - - - - - - - - - - - - - - -
-// FORTSÄTT HÄR! 
+function changeMode() {
+    if (body.style.background === "white") {
+        document.body.style.background = "black";
+        body.style.color = "white";
+        changeBtn.innerText = "Light Mode";
+    }
+    else {
+        document.body.style.background = "white";
+        body.style.color = "black";
+        changeBtn.innerText = "Dark Mode";
+    }
+}
 
 //FUNKTION SHOW QUIZ - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 function showQuestions (){   
@@ -206,6 +221,10 @@ function showResults () {
 }
 
 //BUTTONS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+changeBtn.addEventListener("click", () => {
+    changeMode();
+});
+
 startBtn.addEventListener("click", () => {
     showQuestions();
 });
