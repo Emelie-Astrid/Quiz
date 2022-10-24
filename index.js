@@ -1,11 +1,12 @@
 //STYLE  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 let body = document.querySelector("body");
-body.style.background = "white";
-body.style.color = "black";
+body.style.background = "thistle";
+body.style.color = "purple";
 
 //OBJECTS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 let quiz = document.querySelector("#quiz");
 let radio = document.querySelector("#radio");
+let results = document.querySelector("#results");
 let questionsAndPoints = document.querySelector("#question-number");
 let questionText = document.querySelector("#questions");
 let resultsText = document.querySelector("#quiz-result");
@@ -65,14 +66,14 @@ let answerArray = [];
 
 //FUNCTION DARK MODE LIGHT MODE - - - - - - - - - - - - - - - - - - - - - - -
 function changeMode() {
-    if (body.style.background === "white") {
-        document.body.style.background = "black";
-        body.style.color = "white";
+    if (body.style.background === "thistle") {
+        document.body.style.background = "indigo";
+        body.style.color = "plum";
         changeBtn.innerText = "Light Mode";
     }
     else {
-        document.body.style.background = "white";
-        body.style.color = "black";
+        document.body.style.background = "thistle";
+        body.style.color = "purple";
         changeBtn.innerText = "Dark Mode";
     }
 }
@@ -86,19 +87,18 @@ function showQuestions (){
     //Show points with color and hidden buttons
     if (questionNum >= myQuestions.length) {
 
-        resultBtn.removeAttribute("hidden");
-        restartBtn.removeAttribute("hidden");
+        results.removeAttribute("hidden");
         
         quiz.innerHTML = "<h2>Du fick " + points + " av " + myQuestions.length + " rätt!</h2>";
         
         if ((points/questionNum) > 0.75) {
-            quiz.style.color = "green";
+            quiz.style.color = "teal";
         }
         else if ((points/questionNum)<=0.74 && (points/questionNum)>=0.5){
-            quiz.style.color = "orange";
+            quiz.style.color = "darkorange";
         }
         else {
-            quiz.style.color = "red";
+            quiz.style.color = "tomato";
         }
         //Stops quiz
         return false;
@@ -209,11 +209,11 @@ function showResults () {
         let answers = document.createElement("li");
         if(obj.point === true){
             answers.innerHTML =`${obj.question}<br><br>`;
-            answers.style.color = "green";
+            answers.style.color = "teal";
         }
         else {
             answers.innerHTML =`${obj.question}<br>Rätt svar:  ${obj.correctAnswers}<br><br>`;
-            answers.style.color = "red";
+            answers.style.color = "tomato";
         }
         answersUl.append(answers);
     })
