@@ -1,7 +1,7 @@
 //STYLE  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 let body = document.querySelector("body");
-body.style.background = "thistle";
-body.style.color = "purple";
+body.style.background = "mediumturquoise";
+body.style.color = "black";
 
 //OBJECTS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 let quiz = document.querySelector("#quiz");
@@ -26,38 +26,88 @@ let points = 0;
 //ARRAY WITH QUIZ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 let myQuestions = [
     {
-        question: "Jag är sjuksköterska",
-        a: "Ja",
-        b: "Nej",
-        correctAnswers: "Nej",
+        question: "Om det sover en osynlig man i din säng, vem ska du ringa?",
+        a: "Va?!",
+        b: "Ghostbusters!",
+        correctAnswers: "Ghostbusters!",
         type: "trueFalse"
     },
     {
-        question: "Hur gammal blev Astrid Lindgren?",
-        a: "87",
-        b: "89",
-        c: "94",
-        d: "96",
-        correctAnswers: "94",
+        question: "Är det sant att Han Solo sköt först på Mos Eisley Cantina?",
+        a: "Ja",
+        b: "Nej",
+        correctAnswers: "Ja",
+        type: "trueFalse"
+    },
+    {
+        question: "Vad föreställer loggan för Mr. Miyagis dojo i Karate kid?",
+        a: "Bonsai",
+        b: "Drake",
+        c: "Kobra",
+        d: "Solnedgång",
+        correctAnswers: "Bonsai",
         type: "multipleChoice"
     },
     {
-        question: "Vilka av dessa karaktärer en katt?",
-        a: "Pelle",
-        b: "Cheshire",
-        c: "Pluto",
-        d: "Lufsen",
-        correctAnswers:["Pelle", "Cheshire"], 
+        question: "Vilka år hade filmerna i Star Wars Original triology premiär?",
+        a: "1980",
+        b: "1983",
+        c: "1977",
+        d: "1986",
+        correctAnswers:["1977", "1980", "1983"], 
         type: "checkBox"
     },
     {
-        question: "Vilken film är INTE från Studio Ghibli?",
-        a: "Askungen",
-        b: "YourName",
-        c: "The Wind Rises",
-        d: "Sprited Away",
-        correctAnswers:["Askungen","YourName"], 
+        question: "'Hasta la vista, baby' får man höra Arnorld Schwarzenegger säga i The Terminator, \n men vilket språk använder de i den spanska dubbningen av filmen?",
+        a: "Spanska",
+        b: "Italienska",
+        c: "Japanska",
+        d: "Tyska",
+        correctAnswers: "Japanska",
+        type: "multipleChoice"
+    },
+    {
+        question: "I Blade Runner från 1982 får man ibland syn på en origami-figur, vad föreställer den?",
+        a: "Trana",
+        b: "Häst",
+        c: "Får",
+        d: "Enhörning",
+        correctAnswers: "Enhörning",
+        type: "multipleChoice"
+    },
+    {
+        question: "Filmen Back to the Future från 1985 fick två uppföljare, vilka år reser de till i filmerna?",
+        a: "1885",
+        b: "1955",
+        c: "2015",
+        d: "2055",
+        correctAnswers:["1885", "1955", "2015"], 
         type: "checkBox"
+    },
+    {
+        question: "Daft Punk gjorde soundtracket till Tron Legacy 2010, men är det sant att de syns i filmen?",
+        a: "Sant",
+        b: "Falskt",
+        correctAnswers: "Sant",
+        type: "trueFalse"
+    },
+    {
+        question: "Vilken stad utspelar sig den animerade filmen Akira från 1988?",
+        a: "Neo-Seoul",
+        b: "Neo-Tokyo",
+        c: "Neo-Osaka",
+        d: "Neo-London",
+        correctAnswers: "Neo-Tokyo",
+        type: "multipleChoice"
+    },
+    {
+        question: "Blade Runner hade premiär 1982, men vilket år utspelar sig filmen?",
+        a: "1984",
+        b: "2000",
+        c: "2019",
+        d: "2022",
+        correctAnswers: "2019",
+        type: "multipleChoice"
     },
 ];
 
@@ -66,14 +116,14 @@ let answerArray = [];
 
 //FUNCTION DARK MODE LIGHT MODE - - - - - - - - - - - - - - - - - - - - - - -
 function changeMode() {
-    if (body.style.background === "thistle") {
-        document.body.style.background = "indigo";
-        body.style.color = "plum";
+    if (body.style.background === "mediumturquoise") {
+        document.body.style.background = "black";
+        body.style.color = "mediumturquoise";
         changeBtn.innerText = "Light Mode";
     }
     else {
-        document.body.style.background = "thistle";
-        body.style.color = "purple";
+        document.body.style.background = "mediumturquoise";
+        body.style.color = "black";
         changeBtn.innerText = "Dark Mode";
     }
 }
@@ -213,7 +263,7 @@ function showResults () {
         }
         else {
             answers.innerHTML =`${obj.question}<br>Rätt svar:  ${obj.correctAnswers}<br><br>`;
-            answers.style.color = "tomato";
+            answers.style.color = "orangered";
         }
         answersUl.append(answers);
     })
