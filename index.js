@@ -34,9 +34,9 @@ let myQuestions = [
     },
     {
         question: "Är det sant att Han Solo sköt först på Mos Eisley Cantina?",
-        a: "Ja",
-        b: "Nej",
-        correctAnswers: "Ja",
+        a: "Sant",
+        b: "Falskt",
+        correctAnswers: "Sant",
         type: "trueFalse"
     },
     {
