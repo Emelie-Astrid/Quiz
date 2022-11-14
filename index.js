@@ -133,8 +133,13 @@ function showQuestions (){
     //Hide start button, show next button
     startBtn.style.display = 'none';
     nextBtn.removeAttribute("hidden");
-    
-    //Show points with color and hidden buttons
+
+    //Changes text on button for last question
+    if (questionNum === (myQuestions.length - 1)) {
+        nextBtn.innerText = "Slutför quiz";
+    }
+
+    //Show points with color and hidden buttons at the end of the quiz
     if (questionNum >= myQuestions.length) {
 
         results.removeAttribute("hidden");
@@ -155,7 +160,7 @@ function showQuestions (){
     }
     
     //Current question out of total length of quiz
-    questionsAndPoints.innerText = "Fråga " + (questionNum+1) + " av " + myQuestions.length;
+    questionsAndPoints.innerText = "Fråga " + (questionNum + 1) + " av " + myQuestions.length;
 
     //Text of questions
     questionText.innerText = myQuestions[questionNum].question;
@@ -171,28 +176,28 @@ function showQuestions (){
 
     //Creates checkboxes or radio buttons - - - - - - - - - - - - - - - - -
     if (myQuestions[questionNum].type === "multipleChoice") {
-        radio.innerHTML += `<label> <input type="radio" name="radioAns" value=${myQuestions[questionNum].a}> ${ansA} 
-        </label><br> <label> <input type="radio" name="radioAns" value=${myQuestions[questionNum].b}> ${ansB} 
-        </label><br> <label> <input type="radio" name="radioAns" value=${myQuestions[questionNum].c}> ${ansC} 
-        </label><br> <label> <input type="radio" name="radioAns" value=${myQuestions[questionNum].d}> ${ansD} 
+        radio.innerHTML += `<label> <input type="radio" name="radioAns" value="${myQuestions[questionNum].a}"> ${ansA} 
+        </label><br> <label> <input type="radio" name="radioAns" value="${myQuestions[questionNum].b}"> ${ansB} 
+        </label><br> <label> <input type="radio" name="radioAns" value="${myQuestions[questionNum].c}"> ${ansC} 
+        </label><br> <label> <input type="radio" name="radioAns" value="${myQuestions[questionNum].d}"> ${ansD} 
         </label><br><br>`
     }
     
+    //Value wrapped in "" to be able to have string as answer to question
     else if (myQuestions[questionNum].type === "checkBox") {
-        radio.innerHTML += `<label> <input type="checkbox" value=${myQuestions[questionNum].a}> ${ansA} 
-        </label><br> <label> <input type="checkbox" value=${myQuestions[questionNum].b}> ${ansB} 
-        </label><br> <label> <input type="checkbox" value=${myQuestions[questionNum].c}> ${ansC}
-        </label><br> <label> <input type="checkbox" value=${myQuestions[questionNum].d}> ${ansD}
+        radio.innerHTML += `<label> <input type="checkbox" value="${myQuestions[questionNum].a}"> ${ansA} 
+        </label><br> <label> <input type="checkbox" value="${myQuestions[questionNum].b}"> ${ansB} 
+        </label><br> <label> <input type="checkbox" value="${myQuestions[questionNum].c}"> ${ansC}
+        </label><br> <label> <input type="checkbox" value="${myQuestions[questionNum].d}"> ${ansD}
         </label><br><br>`
     }
 
     else {
-        radio.innerHTML += `<label> <input type="radio" name="radioAns" value=${myQuestions[questionNum].a}> ${ansA} 
-        </label><br> <label> <input type="radio" name="radioAns" value=${myQuestions[questionNum].b}> ${ansB}  
+        radio.innerHTML += `<label> <input type="radio" name="radioAns" value="${myQuestions[questionNum].a}"> ${ansA} 
+        </label><br> <label> <input type="radio" name="radioAns" value="${myQuestions[questionNum].b}"> ${ansB}  
         </label><br><br>`
     }
 }
-
 //FUNCTION CHECK ANSWERS - - - - - - - - - - - - - - - - - - - - - - - - - -
 function checkAnswers () {
 
@@ -233,6 +238,7 @@ function checkAnswers () {
         for (let i=0; i<radioArr.length; i++) {
             if (radioArr[i].checked) {
             ans = radioArr[i].value;
+            // console.log('value is ' + ans);
         }
     }
     //kollar om checked answer matchar korrekt val
